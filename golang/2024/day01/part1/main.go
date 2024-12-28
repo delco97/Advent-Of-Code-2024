@@ -3,18 +3,18 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"strconv"
-	"os"
-	"sort"
 	"math"
+	"os"
 	"regexp"
+	"sort"
+	"strconv"
+	"strings"
 )
-
 
 func readFileContent(fileName string) ([]int, []int, error) {
 	var col1 []int
 	var col2 []int
-	
+
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Printf("Errore durante l'apertura del file: %v\n", err)
@@ -24,21 +24,25 @@ func readFileContent(fileName string) ([]int, []int, error) {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		line := scanner.Text()
-		parts := regexp.MustCompile("\\s+").Split(line, -1)
+		line := strings.TrimSpace(scanner.Text())
+		parts := regexp.MustCompile(`\s+`).Split(line, -1)
 		a, err := strconv.Atoi(parts[0])
-		b, err := strconv.Atoi(parts[1])	
 		if err != nil {
 			fmt.Printf("Errore durante la conversione del numero: %v\n", err)
-			return nil, nil, err	
-		}			
+			return nil, nil, err
+		}
+		b, err := strconv.Atoi(parts[1])
+		if err != nil {
+			fmt.Printf("Errore durante la conversione del numero: %v\n", err)
+			return nil, nil, err
+		}
 		col1 = append(col1, a)
 		col2 = append(col2, b)
 	}
 	return col1, col2, nil
 }
 
-func solve(col_a []int, col_b []int) int {
+func totalDistance(col_a []int, col_b []int) int {
 	sort.Ints(col_a)
 	sort.Ints(col_b)
 
@@ -59,11 +63,16 @@ func solve(col_a []int, col_b []int) int {
 	return sum
 }
 
-func main() {
-	col_a, col_b, err := readFileContent("input.txt")
+func solve(filePath string) int {
+	col_a, col_b, err := readFileContent(filePath)
 	if err != nil {
-		return
+		fmt.Println("Errore durante la lettura del file")
+		return -1
 	}
-	res := solve(col_a, col_b)
-	fmt.Println(res)
+	res := totalDistance(col_a, col_b)
+	return res
+}
+
+func main() {
+	fmt.Println(solve("../input.txt"))
 }

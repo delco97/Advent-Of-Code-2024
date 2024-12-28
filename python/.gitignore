@@ -1,4 +1,3 @@
-
 # .gitignore for a Python project
 
 # Python bytecode
@@ -29,5 +28,8 @@ build/
 *.pyo
 *.pyd
 .DS_Store
-/.pytest_cache/
+/python/day_3/.pytest_cache/
 /.mypy_cache/
+/node_modules/
+/node_env/
+/.pytest_cache/

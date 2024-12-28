@@ -1,4 +1,4 @@
-package tour2
+package main
 
 import "fmt"
 
