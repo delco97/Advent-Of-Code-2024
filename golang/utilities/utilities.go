@@ -2,8 +2,8 @@ package utilities
 
 import (
 	"os"
-	"strings"
 	"sort"
+	"strings"
 )
 
 func CreateTempFile(content string) (*os.File, error) {
