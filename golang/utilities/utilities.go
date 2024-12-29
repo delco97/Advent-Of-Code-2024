@@ -4,6 +4,7 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"golang.org/x/exp/constraints"
 )
 
 func CreateTempFile(content string) (*os.File, error) {
@@ -18,7 +19,7 @@ func CreateTempFile(content string) (*os.File, error) {
 	return tmpFile, nil
 }
 
-func BinarySearchInt(array []int, target int) int {
+func BinarySearchInt[T constraints.Ordered](array []T, target T) int {
 	i := sort.Search(len(array), func(i int) bool {
 		return array[i] >= target
 	}) 
@@ -29,7 +30,7 @@ func BinarySearchInt(array []int, target int) int {
 	}
 }
 
-func CountOccurrencesInSortedSliceInt(array []int, target int) int {
+func CountOccurrencesInSortedSliceInt[T constraints.Ordered](array []T, target T) int {
 	count := 0
 	i := BinarySearchInt(array, target)
 	if i == -1 {
@@ -41,8 +42,8 @@ func CountOccurrencesInSortedSliceInt(array []int, target int) int {
 	return count
 }
 
-func Remove(slice []int, index int) []int {
-    slice_copy := make([]int, len(slice))
+func Remove[T any](slice []T, index int) []T {
+    slice_copy := make([]T, len(slice))
     copy(slice_copy, slice)
 	return append(slice_copy[:index], slice_copy[index+1:]...)
 }

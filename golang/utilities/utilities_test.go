@@ -2,7 +2,7 @@ package utilities
 
 import "testing"
 
-func TestExample(t *testing.T) {
+func TestRemove(t *testing.T) {
 	numbers := []int{10, 20, 30, 40, 50, 60, 70}
 	new_numbers := Remove(numbers, 3)
 	
