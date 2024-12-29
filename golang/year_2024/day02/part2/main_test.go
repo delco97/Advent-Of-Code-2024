@@ -22,8 +22,8 @@ func TestExample(t *testing.T) {
 	}
 	defer os.Remove(tmpFile.Name())
 	result := solve(tmpFile.Name())
-	if result != 2 {
-		t.Fatalf("Expected 2, got %d", result)
+	if result != 4 {
+		t.Fatalf("Expected 4, got %d", result)
 	}
 }
 
