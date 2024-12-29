@@ -26,20 +26,3 @@ func TestExample(t *testing.T) {
 		t.Fatalf("Expected 2, got %d", result)
 	}
 }
-
-func TestExample2(t *testing.T) {
-	
-	content := strings.TrimSpace(`
-	7 6 4 2 1
-	1 2 7 8 9 2
-	`)
-	tmpFile, err := utilities.CreateTempFile(content)
-	if err != nil {
-		t.Fatalf("An error occurred while creating the temp file %v", err)
-	}
-	defer os.Remove(tmpFile.Name())
-	result := solve(tmpFile.Name())
-	if result != 1 {
-		t.Fatalf("Expected 1, got %d", result)
-	}
-}

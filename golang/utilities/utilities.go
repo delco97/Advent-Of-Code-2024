@@ -40,3 +40,9 @@ func CountOccurrencesInSortedSliceInt(array []int, target int) int {
 	}
 	return count
 }
+
+func Remove(slice []int, index int) []int {
+    slice_copy := make([]int, len(slice))
+    copy(slice_copy, slice)
+	return append(slice_copy[:index], slice_copy[index+1:]...)
+}
